@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function HomePage() {
   return (
     <div className="text-center space-y-6">
@@ -9,18 +11,18 @@ export default function HomePage() {
         Explore features, sign up, and enjoy a smooth experience.
       </p>
       <div className="mt-8 flex justify-center gap-6">
-        <a
-          href="/signup"
+        <Link
+          to="/signup"
           className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-xl font-semibold transition shadow-lg"
         >
           Get Started
-        </a>
-        <a
-          href="/login"
+        </Link>
+        <Link
+          to="/login"
           className="px-6 py-3 border border-purple-500 hover:bg-purple-700 rounded-xl font-semibold transition shadow-lg"
         >
           Login
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { auth, signInWithEmailAndPassword } from "../Config/Firebase";
 import { useState } from "react";
 export default function LoginPage() {
@@ -51,9 +52,9 @@ export default function LoginPage() {
       </div>
       <p className="mt-6 text-center text-sm text-purple-300">
         Don’t have an account?{" "}
-        <a href="/signup" className="text-pink-400 hover:underline">
+        <Link to="/signup" className="text-pink-400 hover:underline">
           Sign up
-        </a>
+        </Link>
       </p>
     </div>
   );
