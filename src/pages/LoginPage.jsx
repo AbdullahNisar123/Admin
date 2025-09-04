@@ -1,25 +1,25 @@
-import { Link } from "react-router-dom";
-import { auth, signInWithEmailAndPassword } from "../Config/Firebase";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import AuthContext from "../context/AuthContext";
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log("Login succesfully with :", email);
-        window.location.href = "admin"
+  const { Login } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const handleLogin = async () => {
+    if (!email || !password) {
+      console.log("Enter All Values");
+      return
 
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+    }
+    const result = await Login(email, password)
+    if (result.success) {
+      navigate("/admin")
+    }
+    else {
+      console.log(result.error.message);
 
-      });
+    }
     setEmail("")
     setPassword("")
   }

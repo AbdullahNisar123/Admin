@@ -1,18 +1,14 @@
+import { useContext } from "react";
 import { auth, signOut } from "../Config/Firebase";
+import AuthContext from "../context/AuthContext";
 
 export default function AdminPage() {
-  const handleLogOut = () => {
-    signOut(auth).then(() => {
-      console.log('====================================');
-      console.log("Logout successfully");
-      console.log('====================================');
-    }).catch((error) => {
-      // An error happened.
-      console.log(error);
-
-    });
+  const { LogOut } = useContext(AuthContext)
+  const handleLogOut = async () => {
+    await LogOut()
 
   }
+
   return (
     <div className="text-center space-y-6">
       <div className="flex justify-between items-center">

@@ -1,31 +1,28 @@
-import { useState } from "react";
-import { auth, createUserWithEmailAndPassword } from "../Config/Firebase";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 export default function SignupPage() {
 
+  const {SignUp}  = useContext(AuthContext)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const handleSignUp = () => {
-    if (email === "" || password === "") {
-      console.log("enter the value");
+
+  const navigate = useNavigate()
+  const handleSignUp = async () => {
+
+    if (!email || !password) {
+      console.log("Enter All Values");
       return
 
     }
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("SignUp Succesfully with :", email);
-        window.location.href = "/login"
-
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-
-        // ..
-      });
+    const result = await SignUp(email, password)
+    if (result.success) {
+      navigate("/login")
+    }
+    else {
+      console.log(result.error.message  )
+    }
     setEmail("")
     setPassword("")
 
