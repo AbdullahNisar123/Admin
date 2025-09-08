@@ -10,6 +10,7 @@ export default function Header() {
     { path: "/login", label: "Login" },
     { path: "/signup", label: "Signup" },
     { path: "/admin", label: "Admin" },
+    { path: "/cart", label: "Cart" },
   ];
   const name = useContext(AuthContext)
   return (

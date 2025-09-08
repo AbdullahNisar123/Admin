@@ -6,6 +6,7 @@ import SignupPage from '../pages/SignupPage'
 import AdminPage from '../pages/AdminPage'
 import NotFoundPage from '../pages/NotFoundPage'
 import AuthContext from '../context/AuthContext'
+import AddToCartPage from '../pages/AddToCartPage'
 function Router() {
     const { user } = useContext(AuthContext)
     return (
@@ -15,6 +16,7 @@ function Router() {
             <Route path="/login" element={user ? <AdminPage /> : <LoginPage />} />
             <Route path="/signup" element={user ? <AdminPage /> : <SignupPage />} />
             <Route path="/admin" element={user ? <AdminPage /> : <LoginPage />} />
+            <Route path="/cart" element={user ? <AddToCartPage /> : <LoginPage />} />
         </Routes>
     )
 }
